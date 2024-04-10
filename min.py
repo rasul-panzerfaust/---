@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QHBoxLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QLineEdit, QPushButton, QHBoxLayout, QMessageBox
 from PyQt5 import QtCore
 import math
 
@@ -17,6 +17,8 @@ h4_line = QHBoxLayout()
 
 lab = QLabel('расчет расстояния по гео-сетке')
 lab.setAlignment(QtCore.Qt.AlignCenter)
+
+inst_btn = QPushButton('инструкция')
 
 lab2 = QLabel('⬇️ваш ответ⬇️')
 lab2.setAlignment(QtCore.Qt.AlignCenter)
@@ -94,11 +96,17 @@ def enter_castom_mash():
     cc = tex2
     enter_new_mash.clear()
 
+def instruc():
+    instr = QMessageBox()
+    instr.setText('                               инструкция по пользованию\n\n1) настройте в интерфейсе пункты размеров под свои требования/n(расстояние в пикселях и в метрах одной стороны квадрата)\n2) заранее скачайте приложение powertoys в m.store\n(это приложение представляет собой набор доп инструментов)\n3) для пользования нам понадобится лишь один инструмент\n(линейка экрана вызывается комбинацией win + shift + M)\n4) проведите линейкой от точки до точки и скопируйте результат\n(ctrl + с) и введите эти данные в первое окно/nнажмите кнопку "принять" и получите ответ и получите ответ в м/км')
+    instr.exec_()
+
 
 
 
 # прикрепление
 v_line.addWidget(lab)
+v_line.addWidget(inst_btn)
 v_line.addLayout(h4_line)
 h4_line.addWidget(enter)
 h4_line.addWidget(btn)
@@ -135,7 +143,7 @@ btn2.clicked.connect(entering2)
 
 btn_cas_ok.clicked.connect(enter_castom)
 btn_cas_mash_ok.clicked.connect(enter_castom_mash)
-
+inst_btn.clicked.connect(instruc)
 
 
 
@@ -151,3 +159,14 @@ app.exec_()
 # pip list
 # pip install pyinstaller
 # pyinstaller --onefile .\min.py
+
+#                инструкция по пользованию
+# 1) настройте в интерфейсе пункты размеров под свои требования
+# (расстояние в пикселях и в метрах одной стороны квадрата)
+# 2) заранее скачайте приложение powertoys в m.store
+# (это приложение представляет собой набор доп инструментов)
+# 3) для пользования нам понадобится лишь один инструмент
+# (линейка экрана вызывается комбинацией win + shift + M)
+# 4) проведите линейкой от точки до точки и скопируйте результат
+# (ctrl + с) и введите эти данные в первое окно
+# 5) нажмите кнопку "принять" и получите ответ и получите ответ в м/км
